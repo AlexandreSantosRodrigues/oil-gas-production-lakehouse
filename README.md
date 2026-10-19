@@ -4,7 +4,7 @@
 
 Projeto de engenharia de dados com dados públicos da ANP: ingestão de arquivos com diferentes layouts, camadas Bronze/Silver/Gold em Delta Lake, data warehouse dimensional, auditoria e dashboard no próprio Databricks.
 
-**Primeira versão analítica implementada e validada no workspace em outubro de 2026.** Este repositório contém, por enquanto, a documentação; a publicação dos três notebooks e da imagem do dashboard está pendente. A execução atual é conduzida por notebooks, sem orquestração automática configurada.
+**Primeira versão analítica implementada e validada no workspace em outubro de 2026.** Este repositório reúne a documentação, os três notebooks exportados do workspace e uma imagem do dashboard. A execução atual é conduzida por notebooks, sem orquestração automática configurada.
 
 ## O problema
 
@@ -121,6 +121,10 @@ Registros sem identificador não são vinculados por aproximação de nome. O ca
 
 ## Dashboard e evidência analítica
 
+![Dashboard ANP — Produção, poços e intervenções](docs/images/dashboard-anp.png)
+
+[Abrir dashboard no Databricks](https://dbc-487363e2-3add.cloud.databricks.com/editor/notebooks/3298685177734887/dashboards/63edd4fb-75a1-4732-9037-381f4a79116a?o=7474654958318993) — requer autenticação e permissão no workspace. A imagem acima permite visualizar o painel sem esse acesso.
+
 O dashboard no workspace reúne quatro visualizações:
 
 1. Taxa mensal de óleo de três poços selecionados, somando seus contextos reportados.
@@ -164,11 +168,11 @@ A implementação foi realizada pelo navegador, com coleta direta dos arquivos p
 
 | Notebook desenvolvido no workspace | Conteúdo |
 | --- | --- |
-| `01_environment_and_source_discovery` | Ambiente, descoberta, piloto completo e inventário para expansão |
-| `02_incremental_ingestion` | Coleta ampliada, contratos, Bronze/Silver/Gold e análises históricas |
-| `03_analise_visual` | Consultas dos gráficos e nota de interpretação |
+| [01_environment_and_source_discovery](notebooks/01_environment_and_source_discovery.ipynb) | Ambiente, descoberta, piloto completo e inventário para expansão |
+| [02_incremental_ingestion](notebooks/02_incremental_ingestion.ipynb) | Coleta ampliada, contratos, Bronze/Silver/Gold e análises históricas |
+| [03_analise_visual](notebooks/03_analise_visual.ipynb) | Consultas dos gráficos e nota de interpretação |
 
-**Os arquivos dos notebooks ainda não estão publicados neste repositório.** A tabela descreve os artefatos construídos e executados no workspace.
+Os notebooks em `notebooks/` são os exports enviados do workspace, com código, saídas e metadados preservados. Os nomes foram padronizados sem o sufixo de download `(1)`. Sua publicação não implica validação de execução integral em um ambiente novo.
 
 ### Execução e reprodução
 
@@ -180,7 +184,7 @@ Portanto, ainda não há um procedimento validado de execução integral em um w
 
 ## Limitações e próximas evoluções
 
-- Publicar os notebooks e a imagem final do dashboard no repositório.
+- [x] Publicar os três notebooks e a imagem final do dashboard no repositório.
 - Centralizar parâmetros de coleta, contrato e escopo; remover dependências de execução e células de recuperação do fluxo principal.
 - Validar a execução completa em ambiente limpo e a reexecução das mesmas entradas.
 - Configurar orquestração e acompanhamento de execuções.
