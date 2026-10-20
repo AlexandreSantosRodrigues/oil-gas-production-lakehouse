@@ -196,4 +196,3 @@ Atividade de sondas, histórico completo de operadores e inferência causal não
 
 ---
 
-Desenvolvido por [Alexandre Santos Rodrigues](https://github.com/AlexandreSantosRodrigues), como projeto de portfólio em engenharia de dados.
