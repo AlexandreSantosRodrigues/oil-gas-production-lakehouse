@@ -182,9 +182,9 @@ REVIEW) and 13 production coverage checks (10 PASS, three REVIEW). All
 169 Silver measure reconciliations and three published-scope checks returned
 PASS. The remaining REVIEW outcomes are **not** silently converted to PASS.
 
-The older coverage notebook only parsed numeric \`MM/YYYY\` months and treated
+The older coverage notebook only parsed numeric `MM/YYYY` months and treated
 installation as a required key. Silver v2 parses Portuguese abbreviated
-months such as \`out/2025\`, and intentionally permits NULL installation.
+months such as `out/2025`, and intentionally permits NULL installation.
 The historic documented counts are 657 missing installations in 2026Q1
 and 459 in 2026Q2, totaling 1,116. The older 2025Q4 review reported
 30,123 invalid months due to the strict parser.
@@ -212,9 +212,13 @@ historical contract**; it does NOT override the structural layout REVIEW
 or the main quality harness's BLOCK and does NOT prove the four runs share
 fully verified end-to-end lineage.
 
-A proper follow-up should separately verify that the 2025Q4 structure review
-represents only a *permutation of normalized header names*, that the read
-contract's alignment is correct, and that the contract's file hashes equal
-the intended published analytical scope. Those checks are deliberately not
-automatically waived.
+A manual read-only follow-up on 26 October 2026 reported matching contract,
+structural and published-scope hashes, and confirmed the 2025Q4 variation
+was a compatible permutation of normalized header names. The corrected
+Bronze coverage audit also reported PASS on all 13 contracted production files.
+
+See **[Live Databricks Validation — 2026-10-26](VALIDATION_2026-10-26.md)**
+for run IDs, real workspace output, interpretation and remaining limitations.
+These findings do **not** retroactively change the four historical REVIEW
+results or make the original quality gate return PASS.
 
