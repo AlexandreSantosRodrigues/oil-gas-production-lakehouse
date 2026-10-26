@@ -173,3 +173,48 @@ adds llm_error; missing AI commentary does not authorize publication.
 5. Add real fault injection and a fixed evaluation suite for LLM diagnoses.
 6. Only then consider bounded repair proposals on isolated Git branches and
    human-reviewed deployment workflows.
+
+
+## Historical coverage REVIEW: corrected read-only diagnostic
+
+The October 2026 historical audit recorded 15 structure checks (14 PASS, one
+REVIEW) and 13 production coverage checks (10 PASS, three REVIEW). All
+169 Silver measure reconciliations and three published-scope checks returned
+PASS. The remaining REVIEW outcomes are **not** silently converted to PASS.
+
+The older coverage notebook only parsed numeric \`MM/YYYY\` months and treated
+installation as a required key. Silver v2 parses Portuguese abbreviated
+months such as \`out/2025\`, and intentionally permits NULL installation.
+The historic documented counts are 657 missing installations in 2026Q1
+and 459 in 2026Q2, totaling 1,116. The older 2025Q4 review reported
+30,123 invalid months due to the strict parser.
+
+Read-only, independent coverage recheck (execute inside Databricks Git folder,
+with workspace tables and a Python notebook):
+
+```python
+from harness.coverage_v2 import audit_bronze
+import json
+
+report = audit_bronze(
+    spark,
+    contract_run_id="aea99472-c0f7-4fb7-b8b6-e2336f272fc4",
+    expected_files=13,
+    expected_missing_installation=1116,
+)
+print(json.dumps(report, indent=2, ensure_ascii=False))
+```
+
+This only reads the existing `source_file_read_contracts` and corresponding
+Bronze tables. It never changes old Ops records, Silver, Gold or source files.
+A PASS establishes only a **corrected Bronze coverage check for the pinned
+historical contract**; it does NOT override the structural layout REVIEW
+or the main quality harness's BLOCK and does NOT prove the four runs share
+fully verified end-to-end lineage.
+
+A proper follow-up should separately verify that the 2025Q4 structure review
+represents only a *permutation of normalized header names*, that the read
+contract's alignment is correct, and that the contract's file hashes equal
+the intended published analytical scope. Those checks are deliberately not
+automatically waived.
+
