@@ -196,3 +196,34 @@ Atividade de sondas, histórico completo de operadores e inferência causal não
 
 ---
 
+---
+
+## Harness de qualidade e investigação assistida por IA (experimental)
+
+O repositório também inclui um **harness aditivo e somente leitura** para
+inspecionar quatro conjuntos de verificações existentes na camada Ops:
+estrutura dos arquivos, cobertura, reconciliação da Silver e publicação da
+Gold. As execuções devem ser selecionadas por **IDs explícitos**, não pelo
+último registro independentemente em cada tabela.
+
+- [Instruções para agentes](AGENTS.md): regras de negócio, limites e segurança.
+- [Guia do harness](docs/HARNESS.md): arquitetura, execução no Databricks,
+  validação offline e limitações.
+- [Código do harness](harness/): extração com allowlist, gate determinístico,
+  investigação somente leitura e revisão opcional via LLM.
+- [Testes offline](tests/test_harness.py) e [fixture sintética](examples/ops_snapshot_synthetic.json).
+- [CI do harness](.github/workflows/harness-quality.yml):
+  executa testes sem credenciais do Databricks e sem chamadas a LLM.
+
+Para experimentar localmente ou no GitHub Actions:
+
+```bash
+python -m unittest discover -s tests -v
+python -m harness.cli --snapshot examples/ops_snapshot_synthetic.json --output-dir receipts
+```
+
+**Limite importante:** o PASS do exemplo sintético não comprova o estado
+atual das tabelas no workspace. O harness não executa os notebooks, não
+corrige ou publica tabelas automaticamente e não estabelece reprodutibilidade
+end-to-end. A integração ao Databricks requer seleção manual e coerente dos
+IDs de execução/contrato e validação adicional da linhagem entre lotes.
