@@ -196,8 +196,6 @@ Atividade de sondas, histórico completo de operadores e inferência causal não
 
 ---
 
----
-
 ## Harness de qualidade e investigação assistida por IA (experimental)
 
 O repositório também inclui um **harness aditivo e somente leitura** para
@@ -214,6 +212,12 @@ Gold. As execuções devem ser selecionadas por **IDs explícitos**, não pelo
 - [Testes offline](tests/test_harness.py) e [fixture sintética](examples/ops_snapshot_synthetic.json).
 - [CI do harness](.github/workflows/harness-quality.yml):
   executa testes sem credenciais do Databricks e sem chamadas a LLM.
+- [Validação real do Harness no Databricks — 26/10/2026](docs/VALIDATION_2026-10-26.md):
+  13/13 arquivos de produção aprovados na auditoria Bronze v2, 1.116
+  instalações ausentes preservadas e correspondência de hashes entre
+  contrato, auditoria estrutural e escopo Gold. Os quatro REVIEW históricos
+  permanecem registrados; o gate original continua retornando BLOCK.
+
 
 Para experimentar localmente ou no GitHub Actions:
 
