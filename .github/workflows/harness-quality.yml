@@ -1,0 +1,55 @@
+name: Read-only Harness Quality Checks
+
+on:
+  push:
+    paths:
+      - "harness/**"
+      - "tests/**"
+      - "examples/**"
+      - "AGENTS.md"
+      - "docs/HARNESS.md"
+      - ".github/workflows/harness-quality.yml"
+  pull_request:
+    paths:
+      - "harness/**"
+      - "tests/**"
+      - "examples/**"
+      - "AGENTS.md"
+      - "docs/HARNESS.md"
+      - ".github/workflows/harness-quality.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  harness-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile Python modules
+        run: python -m compileall -q harness tests
+
+      - name: Unit tests (no cloud credentials)
+        run: python -m unittest discover -s tests -v
+
+      - name: Synthetic Ops gate smoke test
+        run: |
+          python -m harness.cli \
+            --snapshot examples/ops_snapshot_synthetic.json \
+            --output-dir /tmp/harness-receipts
+
+      - name: Upload test receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: synthetic-harness-receipt
+          path: /tmp/harness-receipts/*.json
+          if-no-files-found: ignore

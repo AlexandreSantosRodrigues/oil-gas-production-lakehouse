@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "scope_id": "historico_anp_v2",
+  "contract_run_id": "synthetic-contract-001",
+  "checks": {
+    "structure": {
+      "run_id": "synthetic-structure-001",
+      "rows": [
+        {
+          "run_id": "synthetic-structure-001",
+          "status": "PASS",
+          "dataset": "producao_mar",
+          "nome_arquivo": "synthetic-production.csv",
+          "hash_confere": true,
+          "registros_com_estrutura_invalida": 0,
+          "colunas_adicionadas": [],
+          "colunas_ausentes": [],
+          "error_message": null
+        }
+      ]
+    },
+    "coverage": {
+      "run_id": "synthetic-coverage-001",
+      "rows": [
+        {
+          "run_id": "synthetic-coverage-001",
+          "status": "PASS",
+          "contract_run_id": "synthetic-contract-001",
+          "dataset": "producao_mar",
+          "nome_arquivo": "synthetic-production.csv",
+          "registros_esperados": 2,
+          "registros_encontrados": 2,
+          "competencias_invalidas": 0,
+          "ano_invalido_ou_divergente": 0,
+          "registros_com_chave_incompleta": 0
+        }
+      ]
+    },
+    "silver": {
+      "run_id": "synthetic-silver-001",
+      "rows": [
+        {
+          "run_id": "synthetic-silver-001",
+          "status": "PASS",
+          "contract_run_id": "synthetic-contract-001",
+          "dataset": "producao_mar",
+          "nome_arquivo": "synthetic-production.csv",
+          "medida": "producao_de_oleo",
+          "registros_csv": 2,
+          "registros_silver": 2,
+          "total_csv": "12.500000000",
+          "total_silver": "12.500000000",
+          "preenchidos_csv": 1,
+          "preenchidos_silver": 1,
+          "zeros_csv": 0,
+          "zeros_silver": 0
+        }
+      ]
+    },
+    "published": {
+      "run_id": "synthetic-published-001",
+      "rows": [
+        {
+          "run_id": "synthetic-published-001",
+          "status": "PASS",
+          "escopo_id": "historico_anp_v2",
+          "view": "workspace.oil_gas_gold.vw_producao_historico_v2",
+          "registros_esperados": 2,
+          "registros_publicados": 2,
+          "fatos_distintos": 2
+        }
+      ]
+    }
+  }
+}

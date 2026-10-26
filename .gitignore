@@ -1,0 +1,8 @@
+# Keep operational snapshots, receipts and local credentials out of Git.
+receipts/
+snapshots/
+.env
+.env.*
+__pycache__/
+*.py[cod]
+.pytest_cache/
