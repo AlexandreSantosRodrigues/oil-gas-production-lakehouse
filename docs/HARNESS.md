@@ -222,3 +222,8 @@ for run IDs, real workspace output, interpretation and remaining limitations.
 These findings do **not** retroactively change the four historical REVIEW
 results or make the original quality gate return PASS.
 
+
+## Next read-only diagnostic
+
+See [the pinned historical evidence test and execution plan](NEXT_READONLY_TEST.md).
+Its diagnostic PASS preserves the historical BLOCK and does not prove a clean-workspace replay.

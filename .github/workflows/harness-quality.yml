@@ -5,17 +5,19 @@ on:
     paths:
       - "harness/**"
       - "tests/**"
+      - "scripts/**"
       - "examples/**"
       - "AGENTS.md"
-      - "docs/HARNESS.md"
+      - "docs/**"
       - ".github/workflows/harness-quality.yml"
   pull_request:
     paths:
       - "harness/**"
       - "tests/**"
+      - "scripts/**"
       - "examples/**"
       - "AGENTS.md"
-      - "docs/HARNESS.md"
+      - "docs/**"
       - ".github/workflows/harness-quality.yml"
   workflow_dispatch:
 
@@ -35,7 +37,7 @@ jobs:
           python-version: "3.12"
 
       - name: Compile Python modules
-        run: python -m compileall -q harness tests
+        run: python -m compileall -q harness tests scripts
 
       - name: Unit tests (no cloud credentials)
         run: python -m unittest discover -s tests -v
